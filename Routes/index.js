@@ -10,5 +10,6 @@ app.listen(4455,
     });
 
 const route = require("../Routes/ideas.routes.js");
+app.use(express.json());
 route(app);
      
