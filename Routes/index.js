@@ -8,4 +8,7 @@ app.listen(4455,
     () => {
         console.log("Server started at port 4455");
     });
+
+const route = require("../Routes/ideas.routes.js");
+route(app);
      
