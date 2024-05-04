@@ -1,5 +1,5 @@
 //write the logic to create the controllerr for the ide resources
-
+const axios = require('axios');
 const ideas = require('../Models/ideas.models.js');
 
 /**
@@ -48,5 +48,15 @@ exports.deleteIdea = (req, res) => {
         res.status(200).send("deletation successful ");
     }else{
         res.status(404).send({err : "Idea is doesn't exist"});
+    }
+}
+exports.print = async (req,res)=>{
+    try {
+        const responseFromPy = await axios.get('http://localhost:5001/printpy');
+        const responseData = responseFromPy.data; // Extract data from the response
+        res.status(200).json(responseData); // Send only the extracted data in the response
+    } catch (error) {
+        console.error('Error fetching data from Python:', error.message);
+        res.status(500).send('Error fetching data from Python');
     }
 }
